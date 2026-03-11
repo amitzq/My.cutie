@@ -13,8 +13,6 @@ font-family:Arial;
 color:white;
 overflow:hidden;
 
-/* animated gradient background */
-
 background:linear-gradient(-45deg,#ff4e50,#ff6ec4,#f9d423,#24c6dc);
 background-size:400% 400%;
 animation:bgmove 10s ease infinite;
@@ -28,11 +26,9 @@ animation:bgmove 10s ease infinite;
 
 h2{
 margin-bottom:40px;
-text-align:center;
 font-size:28px;
+text-align:center;
 }
-
-/* big button */
 
 button{
 padding:22px 55px;
@@ -46,8 +42,6 @@ color:black;
 font-weight:bold;
 }
 
-/* fullscreen video */
-
 video{
 position:fixed;
 top:0;
@@ -56,8 +50,6 @@ width:100%;
 height:100%;
 object-fit:cover;
 }
-
-/* floating hearts */
 
 .heart{
 position:absolute;
@@ -71,20 +63,18 @@ animation:float 6s linear infinite;
 100%{transform:translateY(-10vh);opacity:0;}
 }
 
-</style></head><body><h2 id="text">Catch the button to unlock your surprise 😆</h2><button id="btn">CLICK ME</button>
+</style></head><body><h2 id="text">Catch the button to unlock the surprise 😆</h2><button id="btn">CLICK ME</button>
 
 <div id="loading" style="display:none;text-align:center;">
 <h2>Preparing your surprise 💘</h2>
 <p id="percent">0%</p>
 </div><div id="videoPage" style="display:none;">
-<video id="myVideo" autoplay muted playsinline>
+<video id="myVideo" playsinline>
 <source src="Vid.mp4" type="video/mp4">
 </video>
 </div><div id="lovePage" style="display:none;">
 <h1 style="font-size:55px;">Love you Cutieee 🫶❤️‍🩹😚</h1>
 </div><script>
-
-/* button prank */
 
 let btn=document.getElementById("btn");
 let moveCount=0;
@@ -110,8 +100,6 @@ moveCount++;
 }
 
 }
-
-/* click start */
 
 btn.addEventListener("click",startLoading);
 
@@ -142,21 +130,16 @@ showVideo();
 
 }
 
-/* show video */
-
 function showVideo(){
 
 document.getElementById("videoPage").style.display="block";
 
 let video=document.getElementById("myVideo");
 
-video.play();
+/* play with sound */
 
-/* sound on after 1 sec */
-
-setTimeout(function(){
 video.muted=false;
-},1000);
+video.play();
 
 video.onended=function(){
 
