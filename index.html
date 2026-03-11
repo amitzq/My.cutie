@@ -63,13 +63,13 @@ animation:float 6s linear infinite;
 100%{transform:translateY(-10vh);opacity:0;}
 }
 
-</style></head><body><h2 id="text">Catch the button to unlock the surprise 😆</h2><button id="btn">CLICK ME</button>
+</style></head><body><h2 id="text">Try to click the button 😆</h2><button id="btn">CLICK ME</button>
 
 <div id="loading" style="display:none;text-align:center;">
 <h2>Preparing your surprise 💘</h2>
 <p id="percent">0%</p>
 </div><div id="videoPage" style="display:none;">
-<video id="myVideo" playsinline>
+<video id="myVideo" controls playsinline>
 <source src="Vid.mp4" type="video/mp4">
 </video>
 </div><div id="lovePage" style="display:none;">
@@ -87,7 +87,7 @@ btn.addEventListener("mouseover",moveButton);
 
 function moveButton(){
 
-if(moveCount<7){
+if(moveCount<5){
 
 let x=Math.random()*80;
 let y=Math.random()*80;
@@ -100,6 +100,8 @@ moveCount++;
 }
 
 }
+
+/* click */
 
 btn.addEventListener("click",startLoading);
 
@@ -126,7 +128,7 @@ showVideo();
 
 }
 
-},35);
+},40);
 
 }
 
@@ -136,9 +138,6 @@ document.getElementById("videoPage").style.display="block";
 
 let video=document.getElementById("myVideo");
 
-/* play with sound */
-
-video.muted=false;
 video.play();
 
 video.onended=function(){
@@ -150,7 +149,7 @@ document.getElementById("lovePage").style.display="block";
 
 }
 
-/* floating hearts */
+/* hearts */
 
 function createHeart(){
 
