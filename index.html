@@ -13,6 +13,8 @@ font-family:Arial;
 color:white;
 overflow:hidden;
 
+/* animated gradient background */
+
 background:linear-gradient(-45deg,#ff4e50,#ff6ec4,#f9d423,#24c6dc);
 background-size:400% 400%;
 animation:bgmove 10s ease infinite;
@@ -27,7 +29,10 @@ animation:bgmove 10s ease infinite;
 h2{
 margin-bottom:40px;
 text-align:center;
+font-size:28px;
 }
+
+/* big button */
 
 button{
 padding:22px 55px;
@@ -41,6 +46,8 @@ color:black;
 font-weight:bold;
 }
 
+/* fullscreen video */
+
 video{
 position:fixed;
 top:0;
@@ -49,6 +56,8 @@ width:100%;
 height:100%;
 object-fit:cover;
 }
+
+/* floating hearts */
 
 .heart{
 position:absolute;
@@ -62,7 +71,7 @@ animation:float 6s linear infinite;
 100%{transform:translateY(-10vh);opacity:0;}
 }
 
-</style></head><body><h2 id="text">Catch the button to see the surprise 😆</h2><button id="btn">CLICK ME</button>
+</style></head><body><h2 id="text">Catch the button to unlock your surprise 😆</h2><button id="btn">CLICK ME</button>
 
 <div id="loading" style="display:none;text-align:center;">
 <h2>Preparing your surprise 💘</h2>
@@ -75,13 +84,13 @@ animation:float 6s linear infinite;
 <h1 style="font-size:55px;">Love you Cutieee 🫶❤️‍🩹😚</h1>
 </div><script>
 
+/* button prank */
+
 let btn=document.getElementById("btn");
 let moveCount=0;
 
 btn.style.top="65%";
 btn.style.left="45%";
-
-/* MOBILE + PC prank */
 
 btn.addEventListener("touchstart",moveButton);
 btn.addEventListener("mouseover",moveButton);
@@ -102,7 +111,7 @@ moveCount++;
 
 }
 
-/* click */
+/* click start */
 
 btn.addEventListener("click",startLoading);
 
@@ -129,9 +138,11 @@ showVideo();
 
 }
 
-},40);
+},35);
 
 }
+
+/* show video */
 
 function showVideo(){
 
@@ -140,6 +151,12 @@ document.getElementById("videoPage").style.display="block";
 let video=document.getElementById("myVideo");
 
 video.play();
+
+/* sound on after 1 sec */
+
+setTimeout(function(){
+video.muted=false;
+},1000);
 
 video.onended=function(){
 
@@ -150,7 +167,7 @@ document.getElementById("lovePage").style.display="block";
 
 }
 
-/* hearts */
+/* floating hearts */
 
 function createHeart(){
 
