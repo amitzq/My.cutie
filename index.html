@@ -1,10 +1,6 @@
-
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html>
 <head>
-<title>My Cutie Surprise</title>
-
-<style>
+<title>My Cutie Surprise</title><style>
 
 body{
 margin:0;
@@ -16,8 +12,6 @@ align-items:center;
 font-family:Arial;
 color:white;
 overflow:hidden;
-
-/* animated gradient background */
 
 background:linear-gradient(-45deg,#ff4e50,#ff6ec4,#f9d423,#24c6dc);
 background-size:400% 400%;
@@ -35,11 +29,9 @@ margin-bottom:40px;
 text-align:center;
 }
 
-/* big button */
-
 button{
-padding:20px 50px;
-font-size:22px;
+padding:22px 55px;
+font-size:24px;
 cursor:pointer;
 position:absolute;
 border:4px solid black;
@@ -47,10 +39,7 @@ border-radius:12px;
 background:white;
 color:black;
 font-weight:bold;
-box-shadow:0 0 15px rgba(0,0,0,0.5);
 }
-
-/* fullscreen video */
 
 video{
 position:fixed;
@@ -61,53 +50,30 @@ height:100%;
 object-fit:cover;
 }
 
-/* floating hearts */
-
 .heart{
 position:absolute;
 color:red;
-font-size:22px;
+font-size:24px;
 animation:float 6s linear infinite;
 }
 
 @keyframes float{
-0%{
-transform:translateY(100vh);
-opacity:1;
-}
-100%{
-transform:translateY(-10vh);
-opacity:0;
-}
+0%{transform:translateY(100vh);opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
 }
 
-</style>
-</head>
-
-<body>
-
-<h2 id="text">Catch the button to see the surprise 😆</h2>
-
-<button id="btn">CLICK ME</button>
+</style></head><body><h2 id="text">Catch the button to see the surprise 😆</h2><button id="btn">CLICK ME</button>
 
 <div id="loading" style="display:none;text-align:center;">
 <h2>Preparing your surprise 💘</h2>
 <p id="percent">0%</p>
-</div>
-
-<div id="videoPage" style="display:none;">
+</div><div id="videoPage" style="display:none;">
 <video id="myVideo" autoplay muted playsinline>
 <source src="Vid.mp4" type="video/mp4">
 </video>
-</div>
-
-<div id="lovePage" style="display:none;">
+</div><div id="lovePage" style="display:none;">
 <h1 style="font-size:55px;">Love you Cutieee 🫶❤️‍🩹😚</h1>
-</div>
-
-<script>
-
-/* moving button prank */
+</div><script>
 
 let btn=document.getElementById("btn");
 let moveCount=0;
@@ -115,7 +81,12 @@ let moveCount=0;
 btn.style.top="65%";
 btn.style.left="45%";
 
-btn.addEventListener("mouseover",function(){
+/* MOBILE + PC prank */
+
+btn.addEventListener("touchstart",moveButton);
+btn.addEventListener("mouseover",moveButton);
+
+function moveButton(){
 
 if(moveCount<7){
 
@@ -129,11 +100,11 @@ moveCount++;
 
 }
 
-});
+}
+
+/* click */
 
 btn.addEventListener("click",startLoading);
-
-/* fake loading */
 
 function startLoading(){
 
@@ -158,11 +129,9 @@ showVideo();
 
 }
 
-},35);
+},40);
 
 }
-
-/* show video */
 
 function showVideo(){
 
@@ -177,11 +146,11 @@ video.onended=function(){
 document.getElementById("videoPage").style.display="none";
 document.getElementById("lovePage").style.display="block";
 
-};
+}
 
 }
 
-/* floating hearts */
+/* hearts */
 
 function createHeart(){
 
@@ -197,15 +166,11 @@ heart.style.fontSize=(20+Math.random()*30)+"px";
 
 document.body.appendChild(heart);
 
-setTimeout(()=>{
-heart.remove();
-},6000);
+setTimeout(()=>heart.remove(),6000);
 
 }
 
 setInterval(createHeart,300);
 
-</script>
-
-</body>
+</script></body>
 </html>
