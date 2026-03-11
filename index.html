@@ -63,18 +63,20 @@ animation:float 6s linear infinite;
 100%{transform:translateY(-10vh);opacity:0;}
 }
 
-</style></head><body><h2 id="text">Try to click the button 😆</h2><button id="btn">CLICK ME</button>
+</style></head><body><h2 id="text">Try to catch the button 😆</h2><button id="btn">CLICK ME</button>
 
 <div id="loading" style="display:none;text-align:center;">
 <h2>Preparing your surprise 💘</h2>
 <p id="percent">0%</p>
 </div><div id="videoPage" style="display:none;">
-<video id="myVideo" controls playsinline>
+<video id="myVideo" playsinline controls>
 <source src="Vid.mp4" type="video/mp4">
 </video>
 </div><div id="lovePage" style="display:none;">
 <h1 style="font-size:55px;">Love you Cutieee 🫶❤️‍🩹😚</h1>
 </div><script>
+
+/* button prank */
 
 let btn=document.getElementById("btn");
 let moveCount=0;
@@ -138,7 +140,11 @@ document.getElementById("videoPage").style.display="block";
 
 let video=document.getElementById("myVideo");
 
+/* video click play */
+
+video.onclick=function(){
 video.play();
+}
 
 video.onended=function(){
 
@@ -149,7 +155,7 @@ document.getElementById("lovePage").style.display="block";
 
 }
 
-/* hearts */
+/* floating hearts */
 
 function createHeart(){
 
