@@ -1,49 +1,44 @@
 <!DOCTYPE html><html>
 <head>
 <title>My Cutie Surprise</title><style>
-
 body{
 margin:0;
 height:100vh;
 display:flex;
-flex-direction:column;
 justify-content:center;
 align-items:center;
+flex-direction:column;
 font-family:Arial;
 color:white;
 overflow:hidden;
 
 background:linear-gradient(-45deg,#ff4e50,#ff6ec4,#f9d423,#24c6dc);
 background-size:400% 400%;
-animation:bgmove 10s ease infinite;
+animation:bg 10s infinite;
 }
 
-@keyframes bgmove{
+@keyframes bg{
 0%{background-position:0% 50%;}
 50%{background-position:100% 50%;}
 100%{background-position:0% 50%;}
 }
 
-h2{
-margin-bottom:40px;
-font-size:28px;
-text-align:center;
-}
-
 button{
 padding:20px 50px;
 font-size:22px;
-cursor:pointer;
 border:4px solid black;
 border-radius:12px;
 background:white;
 color:black;
 font-weight:bold;
+cursor:pointer;
 margin:10px;
 }
 
 #btn{
 position:absolute;
+top:65%;
+left:45%;
 }
 
 video{
@@ -55,59 +50,45 @@ height:100%;
 object-fit:cover;
 }
 
-.heart{
-position:absolute;
-color:red;
-font-size:24px;
-animation:float 6s linear infinite;
-}
-
-@keyframes float{
-0%{transform:translateY(100vh);opacity:1;}
-100%{transform:translateY(-10vh);opacity:0;}
-}
-
-#proposalPage{
+.page{
 display:none;
 text-align:center;
 }
 
-</style></head><body><h2 id="text">Try to catch the button 😆</h2><button id="btn">CLICK ME</button>
+#loading{
+display:none;
+}
 
-<div id="loading" style="display:none;text-align:center;">
+</style></head><body><h2 id="text">Try to catch the button 😆</h2>
+<button id="btn">CLICK ME</button><div id="loading">
 <h2>Preparing your surprise 💘</h2>
 <p id="percent">0%</p>
-</div><div id="videoPage" style="display:none;">
+</div><div id="videoPage" class="page">
 <video id="myVideo" controls playsinline>
 <source src="Vid.mp4" type="video/mp4">
 </video>
-</div><div id="proposalPage"><h1 style="font-size:50px;">Will you stay with me forever? 💍</h1><button onclick="yesAnswer()">YES ❤️</button>
+</div><div id="proposalPage" class="page">
+<h1>Will you stay with me forever? 💍</h1>
+<button onclick="yes()">YES ❤️</button>
 <button id="noBtn">NO 😆</button>
-
-</div><div id="lovePage" style="display:none;">
-<h1 style="font-size:55px;">Love you Cutieee 🫶❤️‍🩹😚</h1>
+</div><div id="lovePage" class="page">
+<h1 style="font-size:50px;">Love you Cutieee 🫶❤️‍🩹😚</h1>
 </div><script>
 
-/* button prank */
+/* moving button */
 
 let btn=document.getElementById("btn");
 let moveCount=0;
 
-btn.style.top="65%";
-btn.style.left="45%";
+btn.addEventListener("mouseover",moveBtn);
+btn.addEventListener("touchstart",moveBtn);
 
-btn.addEventListener("touchstart",moveButton);
-btn.addEventListener("mouseover",moveButton);
-
-function moveButton(){
+function moveBtn(){
 
 if(moveCount<5){
 
-let x=Math.random()*80;
-let y=Math.random()*80;
-
-btn.style.left=x+"vw";
-btn.style.top=y+"vh";
+btn.style.left=Math.random()*80+"vw";
+btn.style.top=Math.random()*80+"vh";
 
 moveCount++;
 
@@ -115,29 +96,26 @@ moveCount++;
 
 }
 
-btn.addEventListener("click",startLoading);
+/* click */
 
-/* loading */
-
-function startLoading(){
+btn.onclick=function(){
 
 btn.style.display="none";
 document.getElementById("text").style.display="none";
 document.getElementById("loading").style.display="block";
 
-let percent=0;
+let p=0;
 
 let load=setInterval(function(){
 
-percent++;
+p++;
+document.getElementById("percent").innerHTML=p+"%";
 
-document.getElementById("percent").innerHTML=percent+"%";
-
-if(percent>=100){
+if(p>=100){
 
 clearInterval(load);
-
 document.getElementById("loading").style.display="none";
+
 showVideo();
 
 }
@@ -146,37 +124,39 @@ showVideo();
 
 }
 
-/* video */
-
 function showVideo(){
 
 document.getElementById("videoPage").style.display="block";
 
 let video=document.getElementById("myVideo");
 
+/* click to play */
+
 video.onclick=function(){
 video.play();
 }
 
-video.onended=function(){
+/* when video ends */
+
+video.addEventListener("ended",function(){
 
 document.getElementById("videoPage").style.display="none";
 document.getElementById("proposalPage").style.display="block";
 
-}
+});
 
 }
 
-/* yes */
+/* YES */
 
-function yesAnswer(){
+function yes(){
 
 document.getElementById("proposalPage").style.display="none";
 document.getElementById("lovePage").style.display="block";
 
 }
 
-/* NO button prank */
+/* NO move */
 
 let noBtn=document.getElementById("noBtn");
 
@@ -185,36 +165,11 @@ noBtn.addEventListener("touchstart",moveNo);
 
 function moveNo(){
 
-let x=Math.random()*80;
-let y=Math.random()*80;
-
 noBtn.style.position="absolute";
-noBtn.style.left=x+"vw";
-noBtn.style.top=y+"vh";
+noBtn.style.left=Math.random()*80+"vw";
+noBtn.style.top=Math.random()*80+"vh";
 
 }
-
-/* hearts */
-
-function createHeart(){
-
-let heart=document.createElement("div");
-
-heart.classList.add("heart");
-
-heart.innerHTML="❤️";
-
-heart.style.left=Math.random()*100+"vw";
-
-heart.style.fontSize=(20+Math.random()*30)+"px";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>heart.remove(),6000);
-
-}
-
-setInterval(createHeart,300);
 
 </script></body>
 </html>
