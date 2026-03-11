@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Cutie Surprise</title>
+
+<style>
+
+body{
+background:black;
+color:white;
+text-align:center;
+font-family:Arial;
+overflow:hidden;
+}
+
+button{
+padding:15px 30px;
+font-size:18px;
+cursor:pointer;
+position:absolute;
+}
+
+video{
+max-width:90%;
+margin-top:20px;
+}
+
+/* floating hearts */
+
+.heart{
+position:absolute;
+color:red;
+font-size:20px;
+animation:float 6s linear infinite;
+}
+
+@keyframes float{
+0%{
+transform:translateY(100vh);
+opacity:1;
+}
+100%{
+transform:translateY(-10vh);
+opacity:0;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<h2 id="text">Catch the button to see the surprise 😆</h2>
+
+<button id="btn" onclick="startLoading()">Click Me</button>
+
+<div id="loading" style="display:none;">
+<h2>Loading your surprise...</h2>
+<p id="percent">0%</p>
+</div>
+
+<div id="videoPage" style="display:none;">
+<h2>Your Surprise 😚</h2>
+
+<video controls>
+<source src="Vid.mp4" type="video/mp4">
+</video>
+
+<br><br>
+
+<button onclick="lovePage()">Next ❤️</button>
+</div>
+
+<div id="lovePage" style="display:none;">
+<h1>Love you Cutieee 🫶❤️‍🩹😚</h1>
+</div>
+
+<script>
+
+/* button move prank */
+
+let moveCount=0;
+
+let btn=document.getElementById("btn");
+
+btn.style.top="60%";
+btn.style.left="45%";
+
+btn.addEventListener("mouseover",function(){
+
+if(moveCount<6){
+
+let x=Math.random()*80;
+let y=Math.random()*80;
+
+btn.style.left=x+"vw";
+btn.style.top=y+"vh";
+
+moveCount++;
+
+}
+
+});
+
+/* loading */
+
+function startLoading(){
+
+btn.style.display="none";
+document.getElementById("text").style.display="none";
+document.getElementById("loading").style.display="block";
+
+let percent=0;
+
+let load=setInterval(function(){
+
+percent++;
+
+document.getElementById("percent").innerHTML=percent+"%";
+
+if(percent>=100){
+
+clearInterval(load);
+
+document.getElementById("loading").style.display="none";
+document.getElementById("videoPage").style.display="block";
+
+}
+
+},40);
+
+}
+
+/* final page */
+
+function lovePage(){
+
+document.getElementById("videoPage").style.display="none";
+document.getElementById("lovePage").style.display="block";
+
+}
+
+/* floating hearts */
+
+function createHeart(){
+
+let heart=document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"vw";
+
+heart.style.fontSize=(20+Math.random()*30)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},6000);
+
+}
+
+setInterval(createHeart,300);
+
+</script>
+
+</body>
+</html>
